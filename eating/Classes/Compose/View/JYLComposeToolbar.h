@@ -27,4 +27,5 @@ typedef enum {
 @interface JYLComposeToolbar : UIView
 @property(nonatomic,weak) id<JYLComposeToolbarDelegate> delegate;
 
+
 @end

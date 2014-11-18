@@ -19,6 +19,12 @@
     [self addSubview:imageView];
 }
 
+-(void)removeAllPhotos{
+    for (UIImageView *imgView in self.subviews) {
+        [imgView removeFromSuperview];
+    }
+}
+
 -(void)layoutSubviews{
     [super layoutSubviews];
     

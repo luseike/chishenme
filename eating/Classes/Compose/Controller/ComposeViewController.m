@@ -103,6 +103,9 @@
 #pragma mark - 私有方法
 - (void)cancel
 {
+    //[[self.photosView subviews] performSelector:@selector(removeFromSuperview) withObject:self];
+    [self.photosView removeAllPhotos];
+    self.textView.text=nil;
     [self.tabBarController setSelectedIndex:0];
 }
 
@@ -115,17 +118,48 @@
 
 - (void)sendStatusWithImage
 {
-    // 1.获得请求管理者
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
     
-    // 2.封装请求参数
+    // 上传图片，返回图片名
+    NSArray *uploadImgNames = [self uploadImages:self.photosView.images];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    
+    params[@"statususerid"]=@"statususerid";
+    params[@"statustitle"]=self.textView.text;
+    for (int i=0; i<uploadImgNames.count; i++) {
+        params[[NSString stringWithFormat:@"statuspic%d",i+1]]=uploadImgNames[i];
+    }
     
     // 3.发送POST请求
 #warning 还没有写完发送功能
 }
 
+-(NSArray *)uploadImages:(NSArray *)images{
+    NSMutableArray *imgNames=[NSMutableArray array];
+    AFHTTPRequestOperationManager *mgr=[AFHTTPRequestOperationManager manager];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"username"] = @"zhangsan";
+    
+    
+    [mgr POST:@"http://chishenme.cc/index.php/index/uploadImgs" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        mgr.responseSerializer.acceptableContentTypes=[NSSet setWithObject:@"text/html"];
+        
+        for (int i=0; i<images.count; i++) {
+            UIImage *img=images[i];
+            NSData *imgData=UIImageJPEGRepresentation(img, 1.0);
+            [formData appendPartWithFileData:imgData name:[NSString stringWithFormat:@"pic%d",i] fileName:[NSString stringWithFormat:@"status%d.jpg",i] mimeType:@"image/jpeg"];
+        }
+    } success:^(AFHTTPRequestOperation *operation, NSDictionary *statusDict) {
+        NSLog(@"上传成功----%@", statusDict);
+        for (int i=0; i<statusDict.count-1; i++) {
+            NSString *imgName=statusDict[[NSString stringWithFormat:@"img%d",i]];
+            [imgNames addObject:imgName];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"上传失败----%@", error);
+    }];
+    return imgNames;
+}
 
 #pragma mark - 键盘处理
 /**

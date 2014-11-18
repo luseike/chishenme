@@ -15,4 +15,6 @@
 -(void)addImage:(UIImage *)image;
 
 -(NSArray *)images;
+
+-(void)removeAllPhotos;
 @end
