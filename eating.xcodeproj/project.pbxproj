@@ -34,7 +34,7 @@
 		63AD1B8E1A1361D000E90E73 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63AD1B8C1A1361D000E90E73 /* LaunchScreen.xib */; };
 		63AD1B9A1A1361D000E90E73 /* eatingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AD1B991A1361D000E90E73 /* eatingTests.m */; };
 		E4FCBD121A1A177200FC4D7D /* JYLComposeToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = E4FCBD111A1A177200FC4D7D /* JYLComposeToolbar.m */; };
-		E4FCBD181A1A24BA00FC4D7D /* NSDate+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = E4FCBD161A1A24BA00FC4D7D /* NSDate+MJ.m */; };
+		E4FCBD181A1A24BA00FC4D7D /* NSDate+JYL.m in Sources */ = {isa = PBXBuildFile; fileRef = E4FCBD161A1A24BA00FC4D7D /* NSDate+JYL.m */; };
 		E4FCBD191A1A24BA00FC4D7D /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E4FCBD171A1A24BA00FC4D7D /* UIView+Extension.m */; };
 		E4FCBD1C1A1A251B00FC4D7D /* JYLComposePhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4FCBD1B1A1A251B00FC4D7D /* JYLComposePhotosView.m */; };
 		E4FCBD1F1A1A280E00FC4D7D /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E4FCBD1E1A1A280E00FC4D7D /* UIBarButtonItem+Extension.m */; };
@@ -104,9 +104,9 @@
 		E4FCBD101A1A177200FC4D7D /* JYLComposeToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLComposeToolbar.h; sourceTree = "<group>"; };
 		E4FCBD111A1A177200FC4D7D /* JYLComposeToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLComposeToolbar.m; sourceTree = "<group>"; };
 		E4FCBD131A1A22E900FC4D7D /* eating-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "eating-Prefix.pch"; sourceTree = "<group>"; };
-		E4FCBD141A1A24BA00FC4D7D /* NSDate+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+MJ.h"; sourceTree = "<group>"; };
+		E4FCBD141A1A24BA00FC4D7D /* NSDate+JYL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+JYL.h"; sourceTree = "<group>"; };
 		E4FCBD151A1A24BA00FC4D7D /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
-		E4FCBD161A1A24BA00FC4D7D /* NSDate+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+MJ.m"; sourceTree = "<group>"; };
+		E4FCBD161A1A24BA00FC4D7D /* NSDate+JYL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+JYL.m"; sourceTree = "<group>"; };
 		E4FCBD171A1A24BA00FC4D7D /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		E4FCBD1A1A1A251B00FC4D7D /* JYLComposePhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLComposePhotosView.h; sourceTree = "<group>"; };
 		E4FCBD1B1A1A251B00FC4D7D /* JYLComposePhotosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLComposePhotosView.m; sourceTree = "<group>"; };
@@ -365,8 +365,8 @@
 		63551F451A19D03800977837 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				E4FCBD141A1A24BA00FC4D7D /* NSDate+MJ.h */,
-				E4FCBD161A1A24BA00FC4D7D /* NSDate+MJ.m */,
+				E4FCBD141A1A24BA00FC4D7D /* NSDate+JYL.h */,
+				E4FCBD161A1A24BA00FC4D7D /* NSDate+JYL.m */,
 				E4FCBD151A1A24BA00FC4D7D /* UIView+Extension.h */,
 				E4FCBD171A1A24BA00FC4D7D /* UIView+Extension.m */,
 				E4FCBD1D1A1A280E00FC4D7D /* UIBarButtonItem+Extension.h */,
@@ -613,7 +613,7 @@
 				E4FCBD121A1A177200FC4D7D /* JYLComposeToolbar.m in Sources */,
 				63551F511A19D29F00977837 /* MeViewController.m in Sources */,
 				E4FCBD1C1A1A251B00FC4D7D /* JYLComposePhotosView.m in Sources */,
-				E4FCBD181A1A24BA00FC4D7D /* NSDate+MJ.m in Sources */,
+				E4FCBD181A1A24BA00FC4D7D /* NSDate+JYL.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

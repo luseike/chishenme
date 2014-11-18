@@ -64,7 +64,7 @@
 {
     JYLTextView *textView = [[JYLTextView alloc] init];
     textView.alwaysBounceVertical = YES; // 垂直方向上拥有有弹簧效果
-    textView.frame=CGRectMake(0, 70, 320, 300);
+    textView.frame=CGRectMake(0, 0, 320, 300);
     textView.delegate = self;
     [self.view addSubview:textView];
     self.textView = textView;
