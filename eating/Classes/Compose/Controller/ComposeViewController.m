@@ -13,18 +13,61 @@
 #import "JYLTextView.h"
 //#import "UIBarButtonItem+Extension.h"
 #import "UIView+Extension.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface ComposeViewController ()<UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,JYLComposeToolbarDelegate>
+@interface ComposeViewController ()<UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,JYLComposeToolbarDelegate,CLLocationManagerDelegate>
 @property(nonatomic,weak) JYLComposePhotosView *photosView;
 @property(nonatomic,weak) JYLComposeToolbar *toolbar;
 @property(nonatomic,weak) JYLTextView *textView;
+
+@property(nonatomic,strong) CLLocationManager *locationManager;
+@property(nonatomic,strong) CLGeocoder *geocoder;
 @end
 
 @implementation ComposeViewController
 #pragma mark - 初始化方法
+
+//-(CLLocationManager *)locMgr{
+//    if (!_locMgr) {
+//        self.locMgr=[[CLLocationManager alloc] init];
+//        self.locMgr.delegate=self;
+//        [self.locMgr requestAlwaysAuthorization];
+//    }
+//    return _locMgr;
+//}
+-(CLGeocoder *)geocoder{
+    if (!_geocoder) {
+        self.geocoder=[[CLGeocoder alloc] init];
+    }
+    return _geocoder;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+//    //定位用户所在位置
+//    if ([CLLocationManager locationServicesEnabled]) {
+//        //开始定位
+//        [self.locMgr startUpdatingLocation];
+//    }else{
+//        //提醒用户检查网络状况
+//        //提醒用户打开定位开关
+//    }
+    
+    
+    CLLocationManager  *locationManager = [[CLLocationManager alloc]init];
+    locationManager.delegate = self;
+    [locationManager requestAlwaysAuthorization];
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager=locationManager;
+    
+    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+        [self.locationManager requestAlwaysAuthorization];
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    
+    [locationManager startUpdatingLocation];
     
     [self setupNavBar];
 
@@ -33,6 +76,37 @@
     [self setupToolbar];
 
     [self setupPhotosView];
+}
+
+#pragma mark - CLLocationManagerDelegate
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+    CLLocation *loc=[locations lastObject];
+    NSLog(@"纬度=%f经度=%f",loc.coordinate.latitude, loc.coordinate.longitude);
+    [manager stopUpdatingLocation];
+    
+//    [self.geocoder reverseGeocodeLocation:loc completionHandler:^(NSArray *placemarks, NSError *error) {
+//        if (error||placemarks.count==0) {
+//            //可能在火星上
+//            NSLog(@"可能在火星上");
+//        }else{
+//            CLPlacemark *firstPlacemark=[placemarks firstObject];
+////            NSString *name=firstPlacemark.name;
+//            NSLog(@"firstPlacemark.name=%@",firstPlacemark.name);
+//        }
+//    }];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    switch (status) {
+        case kCLAuthorizationStatusNotDetermined:
+        if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+            [self.locationManager requestWhenInUseAuthorization];
+        }
+        break;
+        
+        default:
+        break;
+    }
 }
 
 // 添加显示图片的相册控件
@@ -52,7 +126,7 @@
     JYLComposeToolbar *toolbar = [[JYLComposeToolbar alloc] init];
     toolbar.width = self.view.width;
     toolbar.delegate = self;
-    toolbar.height = 44;
+    toolbar.height = 64;
     self.toolbar = toolbar;
     
     toolbar.y = self.view.height - toolbar.height;

@@ -13,7 +13,9 @@ typedef enum {
     JYLComposeToolbarButtonTypePicture,
     JYLComposeToolbarButtonTypeMention,
     JYLComposeToolbarButtonTypeTopic,
-    JYLComposeToolbarButtonTypeEmotion
+    JYLComposeToolbarButtonTypeEmotion,
+    JYLComposeToolbarButtonTypeAddr,
+    JYLComposeToolbarButtonTypeShareLimit
 }JYLComposeToolbarButtonType;
 
 @class JYLComposeToolbar;
