@@ -1,0 +1,37 @@
+//
+//  eating-Prefix.pch
+//  eating
+//
+//  Created by jyl on 14-11-17.
+//  Copyright (c) 2014年 Neo. All rights reserved.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+
+#import "UIView+Extension.h"
+#import "UIView+Extension.h"
+
+#ifndef DEBUG//调试状态，打开LOG功能
+#define JYLLog(...) NSLog(__VA_ARGS__)
+#else//发布状态，关闭LOG功能
+#define JYLLog(...)
+#endif
+
+
+
+//是否为iOS7
+#define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue]>=7.0)
+
+#define JYLColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define JYLRandomColor JYLColor(arc4random_uniform(256),arc4random_uniform(256),arc4random_uniform(256))
+
+#endif
